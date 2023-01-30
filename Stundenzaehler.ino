@@ -45,8 +45,8 @@ void hobbsMeter(bool &state_0, bool &state_1, bool &state_2, bool &state_3) {   
     previousMillis[0] = currentMillis;
     if (state_0 == aktiv) totalmin[0]++;                     // Betriebstundenzähler Relais 1 wird um eine Minute erhöht
     if (state_1 == aktiv) totalmin[1]++;                     // Betriebstundenzähler Relais 2 wird um eine Minute erhöht
-    if (state_2 == aktiv) totalmin[2]++;                     // Betriebstundenzähler Relais 2 wird um eine Minute erhöht
-    if (state_3 == aktiv) totalmin[3]++;                     // Betriebstundenzähler Relais 2 wird um eine Minute erhöht
+    if (state_2 == aktiv) totalmin[2]++;                     // Betriebstundenzähler Relais 3 wird um eine Minute erhöht
+    if (state_3 == aktiv) totalmin[3]++;                     // Betriebstundenzähler Relais 4 wird um eine Minute erhöht
   }
   if (currentMillis - previousMillis[1] >= 1728e5 && (totalmin[0] != lastmin[0] || 
                                                       totalmin[1] != lastmin[1] || 
@@ -77,8 +77,8 @@ String operatingTime(uint32_t &tmin) {                       // lesbare Anzeige 
 
 void save() {
   File file = SPIFFS.open("/operatingTime.txt", "w");        // Betriebstunden(minuten) speichern
-  if (file && freeSpace(200)) {
-    file.printf("%d\n%d\n", totalmin[0], totalmin[1], totalmin[2], totalmin[3]);
+  if (file && freeSpace(100)) {
+    file.printf("%d\n%d\n%d\n%d\n", totalmin[0], totalmin[1], totalmin[2], totalmin[3]);
     file.close();
   }
 }
