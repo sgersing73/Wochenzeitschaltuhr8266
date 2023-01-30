@@ -27,8 +27,8 @@
 //#define CONFIG           // Einkommentieren wenn der ESP dem Router die IP mitteilen soll.
 #define NO_SLEEP           // Auskommentieren wenn der Nodemcu den deep sleep Modus nutzt.
 
-const char* ssid = "FRITZ!Box 7490";             // << kann bis zu 32 Zeichen haben
-const char* password = "05630062617394915176";  // << mindestens 8 Zeichen jedoch nicht länger als 64 Zeichen
+const char* ssid = "XXXXXXXXXXXXXX";             // << kann bis zu 32 Zeichen haben
+const char* password = "00000000000000000000";  // << mindestens 8 Zeichen jedoch nicht länger als 64 Zeichen
 
 #ifdef CONFIG
 IPAddress staticIP(192, 168, 178, 99);      // statische IP des NodeMCU ESP8266
