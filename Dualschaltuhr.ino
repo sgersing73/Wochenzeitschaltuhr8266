@@ -155,7 +155,7 @@ void toSave() {
 }
 
 void dualTimerSwitch() {
-  static uint8_t lastmin {60}, lastState[] {aktiv, aktiv};
+  static uint8_t lastmin {60}, lastState[] {aktiv, aktiv, aktiv, aktiv};
   hobbsMeter(relState[0], relState[1], relState[2], relState[3]);              // Funktionsaufruf Betriebsstundenzähler mit Relais Status
   if (tm.tm_min != lastmin) {
     lastmin = tm.tm_min;
