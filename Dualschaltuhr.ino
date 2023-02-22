@@ -193,3 +193,7 @@ void dualTimerSwitch() {
     }
   }
 }
+
+uint8_t getRelaisState(uint8_t iRel) {
+  return !relState[iRel];
+}
