@@ -35,6 +35,7 @@
 #include <time.h>
 
 struct tm tm;
+char msg[16] = "";
 
 char file[sizeof(__FILE__)] = __FILE__; // Dateiname für den Admin Tab
 
