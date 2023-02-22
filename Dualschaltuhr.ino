@@ -132,11 +132,11 @@ void setupTimerSwitch() {
     }
     if (server.hasArg("tog") && server.arg(0) == "2") {
       relState[2] = !relState[2];                                 // Relais3 Status manuell ändern
-      timeDataLogger(1, server.client().remoteIP().toString());   // Funktionsaufruf Zeitdatenlogger
+      timeDataLogger(2, server.client().remoteIP().toString());   // Funktionsaufruf Zeitdatenlogger
     }
     if (server.hasArg("tog") && server.arg(0) == "3") {
       relState[3] = !relState[3];                                 // Relais4 Status manuell ändern
-      timeDataLogger(1, server.client().remoteIP().toString());   // Funktionsaufruf Zeitdatenlogger
+      timeDataLogger(3, server.client().remoteIP().toString());   // Funktionsaufruf Zeitdatenlogger
     }
     server.send(200, "application/json", ("[\"" + static_cast<String>(relState[0] == aktiv) + "\",\"" + 
                                                   static_cast<String>(relState[1] == aktiv) + "\",\"" + 
