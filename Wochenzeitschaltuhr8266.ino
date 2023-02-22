@@ -28,6 +28,7 @@
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
+#include <LiquidCrystal_I2C.h>
 #include <ESP8266WebServer.h>
 #include <ArduinoOTA.h>     // https://arduino-esp8266.readthedocs.io/en/latest/ota_updates/readme.html
 #include <FS.h>
@@ -37,9 +38,15 @@ struct tm tm;
 
 char file[sizeof(__FILE__)] = __FILE__; // Dateiname für den Admin Tab
 
-ESP8266WebServer server(80);
+ESP8266WebServer  server(80);
+LiquidCrystal_I2C lcd(0x27,16,2);
 
 void setup() {
+  
+  lcd.init();
+  lcd.clear();         
+  lcd.backlight();
+
   Serial.begin(115200);
   delay(100);
   Serial.printf("\nSketchname: %s\nBuild: %s\t\tIDE: %d.%d.%d\n%s\n\n",
@@ -63,9 +70,17 @@ void loop() {
   if (millis() < 0x2FFF || millis() > 0xFFFFF0FF) runtime();
   static uint32_t previousMillis {0};
   uint32_t currentMillis {millis()};
-  if (currentMillis - previousMillis >= 1e2) {
+  if (currentMillis - previousMillis >= 500) { // 500ms
     previousMillis = currentMillis;
     localTime();
     dualTimerSwitch();
+    
+    lcd.home();
+    lcd.setCursor(4,0);   //Set cursor to character 2 on line 0
+    lcd.print(localTime());
+    lcd.setCursor(0,1);   //Set cursor to character 2 on line 0
+    sprintf(msg, "RE: %02d-%02d-%02d-%02d", getRelaisState(0),getRelaisState(1),
+                                            getRelaisState(2),getRelaisState(3));
+    lcd.print(String(msg));        
   }
 }
